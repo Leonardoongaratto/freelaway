@@ -45,7 +45,7 @@ def register(request):
 def login(request):
     if request.method == 'GET':
         if request.user.is_authenticated:
-            return redirect('/plataforma')
+            return redirect('/auth/home')
         return render(request, 'login.html')
     elif request.method == 'POST':
         username = request.POST.get('username')
@@ -58,9 +58,13 @@ def login(request):
             return redirect('/auth/login')
         else:
             auth.login(request, user)
-            return redirect('/plataforma')
+            return redirect('/auth/home')
 
 
-def sair(request):
+def logout_user(request):
     auth.logout(request)
     return redirect('/auth/login')
+
+
+def home(request):
+    return HttpResponse('Bem vindo ao seu Perfil')
