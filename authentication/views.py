@@ -10,7 +10,7 @@ from django.contrib import auth
 def register(request):
     if request.method == 'GET':
         if request.user.is_authenticated:
-            return redirect('/plataforma')
+            return redirect('/auth/home')
         return render(request, 'register.html')
     elif request.method == 'POST':
         username = request.POST.get('username')
