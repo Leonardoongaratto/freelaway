@@ -108,9 +108,11 @@
                                 <p>{{job.prazo_entrega}}</p>
 
                                 <hr style="border-color: yellow">
-                                <form>
+                                <form action="{% url 'enviar_projeto' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
 
-                                    <input type="file" class="form-control" placeholder="Enviar arquivos">
+                                    <input type="file" class="form-control" placeholder="Enviar arquivos" name="file">
+
+                                    <input type="hidden" name="id" value={{job.id}}>
                                     <br>
                                     <input type="submit" value="Enviar" class="btn btn-success btn-lg">
                                 
